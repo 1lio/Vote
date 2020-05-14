@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="TitleText">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/colorTextTitle</item>
+        <item name="android:textSize">18sp</item>
+
+    </style>
+
+    <style name="ActionText">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">18sp</item>
+
+    </style>
+
+    <style name="SubTitleText">
+        <item name="android:textSize">@dimen/font_normal</item>
+
+    </style>
+
 </resources>
