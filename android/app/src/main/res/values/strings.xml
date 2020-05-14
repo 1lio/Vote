@@ -1,3 +1,65 @@
 <resources>
     <string name="app_name">Vote</string>
+
+    <!-- Авторизация -->
+    <string name="auth">Авторизация</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="save_login">Сохранить логин</string>
+    <string name="error_login">Неверный логин или пароль</string>
+    <string name="error_info"> За учетными данными обратитесь к модератору</string>
+
+    <!-- Сообщения -->
+    <string name="check">Проверка</string>
+    <string name="loading">Загрузка…</string>
+    <string name="welcome">Добро пожаловать</string>
+    <string name="start_vote">Начало в:</string>
+    <string name="end_vote">Окончание в:</string>
+    <string name="not_vote">На текущий момент мероприятий нет</string>
+    <string name="done_vote">Голосования завершено!</string>
+    <string name="status_fail_vote">Учтено: Отсутствие</string>
+    <string name="plan_vote">Мероприятие запланированно!</string>
+
+    <!-- Кнопки и текст -->
+    <string name="next">Далее</string>
+    <string name="back">Назад</string>
+    <string name="exit">Выход</string>
+    <string name="done">Готово</string>
+    <string name="add">Добавить</string>
+    <string name="crate_vote">Создать мероприятие</string>
+    <string name="users">Пользователи</string>
+    <string name="history">История</string>
+    <string name="delete">Удалить</string>
+
+    <!-- Мероприятие -->
+    <string name="cur_event">Текущее мероприятие</string>
+    <string name="plan_event">Запланированные мероприятия</string>
+    <string name="name_event">Название мероприятия</string>
+    <string name="last">Последнее</string>
+    <string name="before">Ранее</string>
+    <string name="count_question">Кол-во вопросов:</string>
+    <string name="participant">Учавствуют в голосовании</string>
+    <string name="type">Тип:</string>
+    <string name="name_question">Название вопроса</string>
+    <string name="subtext">Дополнительный текст</string>
+    <string name="option">Вариант</string>
+
+    <!-- Варианты -->
+    <string name="type_1">Единственный выбор</string>
+    <string name="type_2">Множественный выбор</string>
+    <string name="type_3">Список 1 вариант</string>
+
+    <!-- Пользователи-->
+    <string name="create_user">Создать пользователя</string>
+    <string name="fio">ФИО</string>
+    <string name="permission">Права на редактирование</string>
+    <string name="reset_pass">Обновить пароль</string>
+    <string name="reset_pass_all">Обновить всем пароли</string>
+    <string name="export_list">Экспорт списка</string>
+
+    <!-- Результаты-->
+    <string name="count_votes">Проголосовших:</string>
+    <string name="absented">Отсутствовали</string>
+
+
 </resources>
