@@ -8,6 +8,9 @@
     <string name="save_login">Сохранить логин</string>
     <string name="error_login">Неверный логин или пароль</string>
     <string name="error_info"> За учетными данными обратитесь к модератору</string>
+    <string name="is_not_empty">Не должен быть пустым</string>
+    <string name="error_min_length_pass">Минимальная длинна 6 симв.</string>
+
 
     <!-- Сообщения -->
     <string name="check">Проверка</string>
