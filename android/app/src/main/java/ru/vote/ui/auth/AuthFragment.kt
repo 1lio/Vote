@@ -8,16 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fr_auth.*
 import ru.vote.R
 import ru.vote.extensions.isValidLogin
 import ru.vote.extensions.isValidPass
 import ru.vote.repository.LocalRepository
 import ru.vote.ui.message.MessageFragment
-import ru.vote.viewmodel.AuthState
-import ru.vote.viewmodel.AuthViewModel
 
 class AuthFragment : Fragment() {
 
@@ -28,7 +24,6 @@ class AuthFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true  // Сохраняем состояние фрагмента, живет до onDestroy
-
     }
 
     // Вызывается создание компонентов
@@ -40,15 +35,9 @@ class AuthFragment : Fragment() {
     // Компаненты фрагмента созданы
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        loadLogin()
-        //   viewModel = ViewModelProvider(activity!!)[AuthViewModel::class.java]
-        // Корректность данных
-        isValid = (editLogin.isValidLogin() && editPassword.isValidPass())
-        // viewModel.setValidForm(isValid)
 
-        /*       viewModel.observeForm(this, Observer {
-                   viewModel.setEnableAction(isValid)
-               })*/
+        // Заргужаем ранее сохраненный логин
+        loadLogin()
 
         // Чекаем поля при изменении
         listOf(editLogin, editPassword).forEach {
@@ -91,11 +80,6 @@ class AuthFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
-    // Фрагмент стал снова видимым
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun checkAuth(login: String, pass: String) {
 
         val fm = activity!!.supportFragmentManager
@@ -123,7 +107,7 @@ class AuthFragment : Fragment() {
     }
 
     private fun loadLogin() {
-        val isSaved =  localRepository.isSavedLogin
+        val isSaved = localRepository.isSavedLogin
         if (isSaved) editLogin.setText(localRepository.login)
         checkboxLogin.isChecked = isSaved
     }
