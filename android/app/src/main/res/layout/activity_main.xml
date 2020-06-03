@@ -6,4 +6,4 @@
     android:fitsSystemWindows="true"
     android:background="@color/colorBackground"
     tools:context=".MainActivity"
-    android:id="@+id/host_activity"/>
+    android:id="@+id/main_activity"/>

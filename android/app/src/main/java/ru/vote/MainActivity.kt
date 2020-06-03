@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.host_activity, AuthFragment())
+                .replace(R.id.main_activity, AuthFragment())
                 .commitNow()
         }
     }
