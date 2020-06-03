@@ -69,35 +69,31 @@ class AuthFragment : Fragment() {
             checkAuth(editLogin.text.toString(), editPassword.text.toString())
         }
 
-        checkboxLogin.setOnCheckedChangeListener { buttonView, isChecked ->
+        checkboxLogin.setOnCheckedChangeListener { _, isChecked ->
             saveStateLogin(isChecked)
             saveLogin(editLogin.text.toString())
         }
-    }
-
-    // Можем обращаться к активити
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     private fun checkAuth(login: String, pass: String) {
 
         val fm = activity!!.supportFragmentManager
             .beginTransaction()
-            .addToBackStack("S")
+
 
         val msgFR = MessageFragment(0)
 
+        //fm.replace(R.id.main_activity, msgFR).commit()
 
-        fm.replace(R.id.host_activity, msgFR).commit()
-
-        val handler = Handler()
-        handler.postDelayed({
-            activity!!.onBackPressed()
-        }, 3000)
+ /*       val handler = Handler()
+        handler.postDelayed(
+            { activity!!.onBackPressed()
+        }, 3000)*/
         // Заглушка
         if (login == "ADMiN" && pass == "pass123") {
-
+            fm.replace(R.id.main_activity, MessageFragment(1)).commit()
+        } else {
+            txtAuthError.visibility = View.VISIBLE
         }
     }
 

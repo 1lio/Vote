@@ -1,5 +1,6 @@
 package ru.vote.repository
 
+import ru.vote.entity.Question
 import ru.vote.entity.Vote
 
  class FakeRepository {
@@ -18,4 +19,21 @@ import ru.vote.entity.Vote
        }
     }
 
+     private val question1 = Question(1,
+         "Hello main klein soldaten",
+         "awzdxfc  ghjjkhbgvfcxdczsszdcxfg hhc ghfc ghfjc gvh",
+         arrayListOf("efijfgihweigiew", "UJFIEFHBUIWEUIFEWBUIFU","EDFJHFHUJIWEHUIOFQW")
+     )
+     private val question2 = Question(1,
+         "Hello main fgrehery2w345klein soldaten",
+         "",
+         arrayListOf("efijfgihweiytutyujygiew", "UJFIEFHBUutytyuIWEUIFEWBUIFU","EDFJHFHUJIWEHUIOFQW", "HJIFGFHBUGBJNRDF")
+     )
+     private val question3 = Question(1,
+         "Hello main ky45tyyewywlein soldaten",
+         "",
+         arrayListOf("efijfgihewyyeweigiew", "UJtttutFIEFHtBUIWEUIFEWBUIFU","EDFJHFHUJIWEHUIOFQW", "FJIJEQWQQQQ1QQQ")
+     )
+
+     fun getQuestions() = arrayListOf<Question>(question1, question2, question3)
 }
