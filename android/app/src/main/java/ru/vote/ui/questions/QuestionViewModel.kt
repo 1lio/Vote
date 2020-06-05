@@ -15,15 +15,17 @@ class QuestionViewModel : ViewModel() {
         curQuest.value = 1
     }
 
-    fun observeCounter(owner: LifecycleOwner, observer: Observer<Int>){
+    fun observeCounter(owner: LifecycleOwner, observer: Observer<Int>) {
         curQuest.observe(owner, observer)
     }
 
     fun getListQuestion() = listQuestion
 
     fun incrementCount() {
-        curQuest.value = curQuest.value?.plus(1) ?: 1
+        if (curQuest.value == listQuestion.size) curQuest.value = listQuestion.size
+        else curQuest.value = curQuest.value?.plus(1) ?: 1
     }
 
-    fun getCount() = curQuest.value ?: 1
+    fun getCount() =
+        if (curQuest.value!! >= listQuestion.size) listQuestion.size else curQuest.value
 }

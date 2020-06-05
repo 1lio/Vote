@@ -25,12 +25,12 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.observeCounter(viewLifecycleOwner, Observer {
-            val question = viewModel.getListQuestion()[it - 1]
+        val question = viewModel.getListQuestion()[1 - 1]
             voteTitle.text = question.title
             voteSubtitle.text = question.question
-            voteCounter.text = "$it/${viewModel.getListQuestion().size}"
             setQuestion(1)
+        viewModel.observeCounter(viewLifecycleOwner, Observer {
+            voteCounter.text = "$it/${viewModel.getListQuestion().size}"
         })
 
         buttonNext.setOnClickListener { viewModel.incrementCount() }
@@ -49,7 +49,7 @@ class QuestionFragment : Fragment() {
 
         val listBox = mutableListOf<CheckBox>()
 
-        val list = viewModel.getListQuestion()[viewModel.getCount()-1].answeres
+        val list = viewModel.getListQuestion()[viewModel.getCount()!!-1].answeres
 
         for ((index, value) in list.withIndex()) {
 

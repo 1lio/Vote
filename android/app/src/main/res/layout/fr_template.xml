@@ -9,5 +9,7 @@
         android:layout_height="match_parent"
         android:addStatesFromChildren="true"
         android:animateLayoutChanges="true"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:saveEnabled="false"
         android:animationCache="true" />
 </LinearLayout>
