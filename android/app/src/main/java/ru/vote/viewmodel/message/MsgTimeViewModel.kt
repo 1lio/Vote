@@ -1,6 +1,5 @@
 package ru.vote.viewmodel.message
 
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -34,8 +33,6 @@ class MsgTimeViewModel : ViewModel() {
         val diff = planedTime.value!!.time - curDate!!.time
 
         time.value = formatDate.format(Date(diff)).toString()
-
-        Log.i("TIME_TEST", ss.toString() ?: "null")
     }
 
 }
