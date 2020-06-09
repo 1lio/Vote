@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.item_template.*
 import ru.vote.R
 
-class QuestionFragment : Fragment() {
+class QuestionFragment() : Fragment() {
 
     private lateinit var viewModel: QuestionViewModel
 
@@ -25,13 +25,13 @@ class QuestionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val question = viewModel.getListQuestion()[1 - 1]
-            voteTitle.text = question.title
-            voteSubtitle.text = question.question
-            setQuestion(1)
-        viewModel.observeCounter(viewLifecycleOwner, Observer {
-            voteCounter.text = "$it/${viewModel.getListQuestion().size}"
-        })
+//        val question = viewModel.getListQuestion()[1 - 1]
+//            voteTitle.text = question.title
+//            voteSubtitle.text = question.question
+//            setQuestion(1)
+//        viewModel.observeCounter(viewLifecycleOwner, Observer {
+//            voteCounter.text = "$it/${viewModel.getListQuestion().size}"
+//        })
 
         buttonNext.setOnClickListener { viewModel.incrementCount() }
 
