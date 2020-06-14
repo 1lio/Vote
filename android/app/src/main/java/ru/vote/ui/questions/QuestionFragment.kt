@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.item_template.*
 import ru.vote.R
@@ -49,7 +48,7 @@ class QuestionFragment() : Fragment() {
 
         val listBox = mutableListOf<CheckBox>()
 
-        val list = viewModel.getListQuestion()[viewModel.getCount()!!-1].answeres
+        val list = viewModel.getListQuestion()[viewModel.getCount()!!-1].listAnswers
 
         for ((index, value) in list.withIndex()) {
 

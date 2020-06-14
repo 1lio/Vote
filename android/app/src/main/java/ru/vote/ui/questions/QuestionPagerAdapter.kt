@@ -4,50 +4,108 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import android.widget.*
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.item_template.*
+import ru.vote.MainActivity
 import ru.vote.R
 import ru.vote.entity.Question
 
 class QuestionPagerAdapter(private val list: ArrayList<Question>) :
-    RecyclerView.Adapter<QuestionPagerAdapter.ViewHolderFragment>() {
+    RecyclerView.Adapter<QuestionPagerAdapter.ViewHolder>() {
 
     private lateinit var ctx: Context
+    private lateinit var viewModel: QuestionViewModel
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderFragment {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         ctx = parent.context
-        val v = LayoutInflater.from(ctx).inflate(R.layout.item_template,parent,false)
-        return ViewHolderFragment(v)
+        val activity = ctx as MainActivity
+        viewModel = ViewModelProvider(activity)[QuestionViewModel::class.java]
+        val v = LayoutInflater.from(ctx).inflate(R.layout.item_template, parent, false)
+        return ViewHolder(v)
     }
 
-    override fun getItemCount(): Int {
-       return list.size
-    }
+    override fun getItemCount() = list.size
 
-    override fun onBindViewHolder(holder: ViewHolderFragment, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(position)
     }
 
-    inner class ViewHolderFragment(v: View) : RecyclerView.ViewHolder(v), View.OnClickListener{
+    inner class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
+
         private val voteTitle: TextView = v.findViewById(R.id.voteTitle)
         private val voteSubtitle: TextView = v.findViewById(R.id.voteSubtitle)
         private val voteCounter: TextView = v.findViewById(R.id.voteCounter)
-        private val buttonNext: Button = v.findViewById(R.id.buttonNext)
+        private val btnNext: Button = v.findViewById(R.id.buttonNext)
+        private val containerQuestions: FrameLayout = v.findViewById(R.id.containerQuestions)
 
-        fun bind(index: Int){
+        fun bind(index: Int) {
             voteTitle.text = list[index].title
-            voteSubtitle.text = list[index].question
-            voteCounter.text = "${(index + 1)}"
-            itemView.setOnClickListener{this}
+            voteSubtitle.text = list[index].subtitle
+            voteCounter.text = "${(index + 1)}/${list.size}"
+
+            btnNext.setOnClickListener {
+
+                viewModel.incrementCount()
+            }
+
+            setQuestion(list[index].type)
         }
 
-        override fun onClick(v: View?) {
-            TODO("Not yet implemented")
+        private fun setQuestion(type: Int) {
+            val presentation = when (type) {
+                1 -> viewCheckbox()
+                else -> viewRadioButton()
+            }
+            containerQuestions.addView(presentation)
         }
+
+        private fun viewCheckbox(): View {
+
+            val listBox = mutableListOf<CheckBox>()
+
+            val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
+
+            for ((index, value) in list.withIndex()) {
+
+                val checkBox = CheckBox(ctx)
+                checkBox.text = value
+
+                listBox.add(index, checkBox)
+            }
+
+            val layout = LinearLayout(ctx)
+            layout.orientation = LinearLayout.VERTICAL
+
+            listBox.forEach { layout.addView(it) }
+
+            return layout
+
+        }
+
+
+        // TODO: Доделать
+        private fun viewRadioButton(): View {
+            val listBox = mutableListOf<RadioButton>()
+
+            val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
+
+            for ((index, value) in list.withIndex()) {
+
+                val checkBox = RadioButton(ctx)
+                checkBox.text = value
+
+                listBox.add(index, checkBox)
+            }
+
+            val layout = RadioGroup(ctx)
+            layout.invalidate()
+            listBox.forEach { layout.addView(it) }
+            return layout
+        }
+
+
     }
 
 }

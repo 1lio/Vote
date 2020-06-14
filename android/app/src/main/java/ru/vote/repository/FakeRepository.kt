@@ -24,16 +24,26 @@ import ru.vote.entity.Vote
          "1  ghjjkhbgvfcxdczsszdcxfg hhc ghfc ghfjc gvh",
          arrayListOf("1", "2","3")
      )
-     private val question2 = Question(1,
-         "2 main fgrehery2w345klein soldaten",
+     private val question2 = Question(2,
+         "2d main fgrehery2w345klein soldaten",
          "2222",
-         arrayListOf("4", "5","6", "7")
+         arrayListOf("4", "5","хуй", "7")
      )
      private val question3 = Question(1,
-         "33 main ky45tyyewywlein soldaten",
+         "3g3 main ky45tyyewywlein soldaten",
          "333",
-         arrayListOf("8", "9","10", "11")
+         arrayListOf("yes", "no")
+     )
+     private val question4 = Question(2,
+         "dfg33 maidfgdn ky45tyyewywlein soldaten",
+         "333",
+         arrayListOf("yes", "no", "bh")
+     )
+     private val question5 = Question(1,
+         "33 maigghgfhffdvdein soldaten",
+         "333",
+         arrayListOf("213", "1231", "b12412tfdvfch")
      )
 
-     fun getQuestions() = arrayListOf<Question>(question1, question2, question3)
+     fun getQuestions() = arrayListOf(question1, question2, question3, question4, question5)
 }

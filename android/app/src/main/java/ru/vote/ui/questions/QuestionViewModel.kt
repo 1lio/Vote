@@ -12,7 +12,7 @@ class QuestionViewModel : ViewModel() {
     private val curQuest = MutableLiveData<Int>()
 
     init {
-        curQuest.value = 1
+        curQuest.value = 0
     }
 
     fun observeCounter(owner: LifecycleOwner, observer: Observer<Int>) {

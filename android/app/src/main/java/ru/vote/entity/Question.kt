@@ -3,6 +3,6 @@ package ru.vote.entity
 class Question(
     var type: Int,
     var title: String,
-    var question: String = "",
-    var answeres: MutableList<String>
+    var subtitle: String = "",
+    var listAnswers: MutableList<String>
 )
