@@ -16,8 +16,7 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
 
     private lateinit var ctx: Context
     private lateinit var viewModel: QuestionViewModel
-    private lateinit var listBoxCheckBox: MutableList<CheckBox>
-    private lateinit var listBoxRadioButton: MutableList<RadioButton>
+    private lateinit var listBox: MutableList<CompoundButton>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         ctx = parent.context
@@ -46,7 +45,7 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
             voteSubtitle.text = list[index].subtitle
             voteCounter.text = "${(index + 1)}/${list.size}"
 
-            btnNext.setOnClickListener{
+            btnNext.setOnClickListener {
 
                 viewModel.incrementCount()
             }
@@ -55,60 +54,32 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
         }
 
         private fun setQuestion(type: Int) {
-            val presentation = when (type) {
-                1 -> viewCheckbox()
-                else -> viewRadioButton()
-            }
-            containerQuestions.addView(presentation)
+            containerQuestions.addView(addViewType(type))
         }
 
-        private fun viewCheckbox(): View {
+        private fun addViewType(type: Int): View {
 
-            listBoxCheckBox = mutableListOf<CheckBox>()
+            listBox = mutableListOf()
 
             val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
 
             for ((index, value) in list.withIndex()) {
 
-                val checkBox = CheckBox(ctx)
-                checkBox.text = value
+                val box: CompoundButton = if (type == 1) CheckBox(ctx) else RadioButton(ctx)
+                box.text = value
 
-                listBox.add(index, checkBox)
+                listBox.add(index, box)
             }
 
-            val layout = LinearLayout(ctx)
+            val layout = if (type == 1) LinearLayout(ctx) else RadioGroup(ctx)
             layout.orientation = LinearLayout.VERTICAL
 
-            listBox.forEach { layout.addView(it) }
-
-            return layout
-
-        }
-
-
-        // TODO: Доделать
-        private fun viewRadioButton(): View {
-            listBoxRadioButton = mutableListOf<RadioButton>()
-
-            val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
-
-            for ((index, value) in list.withIndex()) {
-
-                val checkBox = RadioButton(ctx)
-                checkBox.text = value
-
-                listBox.add(index, checkBox)
-            }
-
-            val layout = RadioGroup(ctx)
             layout.invalidate()
             listBox.forEach { layout.addView(it) }
             return layout
+
         }
 
 
-
-
     }
-
 }
