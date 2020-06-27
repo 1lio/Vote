@@ -1,4 +1,4 @@
-package ru.vote.ui.questions
+package ru.vote.viewmodel
 
 import android.os.Build
 import android.util.Log

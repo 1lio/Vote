@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.item_template.*
 import ru.vote.R
+import ru.vote.viewmodel.QuestionViewModel
 
 class QuestionFragment() : Fragment() {
 

@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fr_template.*
 import ru.vote.R
+import ru.vote.viewmodel.QuestionViewModel
 
 class QuestionsFragment : Fragment() {
 

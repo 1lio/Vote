@@ -2,7 +2,6 @@ package ru.vote.ui.questions
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.vote.MainActivity
 import ru.vote.R
 import ru.vote.entity.Poll
+import ru.vote.viewmodel.QuestionViewModel
 
 class QuestionPagerAdapter(private val list: ArrayList<Poll>) :
     RecyclerView.Adapter<QuestionPagerAdapter.ViewHolder>() {
