@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fr_template.*
 import ru.vote.R
+import ru.vote.ui.result.ResultFragment
 import ru.vote.viewmodel.QuestionViewModel
 
 class QuestionsFragment : Fragment() {
@@ -26,12 +27,25 @@ class QuestionsFragment : Fragment() {
 
         val adapter = QuestionPagerAdapter(viewModel.getListQuestion())
 
-      //  viewPager2.isUserInputEnabled = false
+        //  viewPager2.isUserInputEnabled = false
         viewPager2.adapter = adapter
-       // viewPager2.offscreenPageLimit = 1
+        // viewPager2.offscreenPageLimit = 1
 
         viewModel.observeCounter(viewLifecycleOwner, Observer {
             viewPager2.setCurrentItem(it, true)
+        })
+
+        viewModel.observeFinish(viewLifecycleOwner, Observer {
+
+            if (it) {
+                activity!!
+                    .supportFragmentManager
+                    .beginTransaction()
+
+                    .replace(R.id.main_activity, ResultFragment())
+                    .commit()
+            }
+
         })
 
     }

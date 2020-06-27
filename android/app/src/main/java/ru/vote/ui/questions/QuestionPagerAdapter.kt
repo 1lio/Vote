@@ -75,32 +75,32 @@ class QuestionPagerAdapter(private val list: ArrayList<Poll>) :
                 viewModel.incrementCount()
             }
 
-    }
-
-    private fun setQuestion(type: Int) {
-        containerQuestions.addView(addViewType(type))
-    }
-
-    private fun addViewType(type: Int): View {
-
-        listBox = mutableListOf()
-        val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
-        list.forEachIndexed { index, value ->
-
-            val box: CompoundButton = if (type == 1) CheckBox(ctx) else RadioButton(ctx)
-            box.text = value
-
-            listBox.add(index, box)
         }
 
-        val group = if (type == 1) LinearLayout(ctx) else RadioGroup(ctx)
-        group.orientation = LinearLayout.VERTICAL
+        private fun setQuestion(type: Int) {
+            containerQuestions.addView(addViewType(type))
+        }
 
-        group.invalidate()
-        listBox.forEach { group.addView(it) }
-        return group
+        private fun addViewType(type: Int): View {
+
+            listBox = mutableListOf()
+            val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
+            list.forEachIndexed { index, value ->
+
+                val box: CompoundButton = if (type == 1) CheckBox(ctx) else RadioButton(ctx)
+                box.text = value
+
+                listBox.add(index, box)
+            }
+
+            val group = if (type == 1) LinearLayout(ctx) else RadioGroup(ctx)
+            group.orientation = LinearLayout.VERTICAL
+
+            group.invalidate()
+            listBox.forEach { group.addView(it) }
+            return group
+        }
+
+
     }
-
-
-}
 }

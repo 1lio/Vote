@@ -65,6 +65,8 @@
     <!-- Результаты-->
     <string name="count_votes">Проголосовших:</string>
     <string name="absented">Отсутствовали</string>
+    <string name="votes">Проголосовших:</string>
+    <string name="count_vote">Кол-во вопросов:</string>
 
 
 </resources>

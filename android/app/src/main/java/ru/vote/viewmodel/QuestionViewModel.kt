@@ -14,16 +14,22 @@ class QuestionViewModel : ViewModel() {
     private val listPoll = FakeRepository().getQuestions()
     private val curQuest = MutableLiveData<Int>()
     private val listAnswer = MutableLiveData<MutableMap<Int, String>>()
+    private val finished = MutableLiveData<Boolean>()
+
 
     init {
-        listAnswer.value = mutableMapOf(0 to "")
+        finished.value = false
+        listAnswer.value = mutableMapOf()
         curQuest.value = 0
     }
 
 
-
     fun observeCounter(owner: LifecycleOwner, observer: Observer<Int>) {
         curQuest.observe(owner, observer)
+    }
+
+    fun observeFinish(owner: LifecycleOwner, observer: Observer<Boolean>) {
+        finished.observe(owner, observer)
     }
 
     private fun getPollId(): Int {
@@ -33,8 +39,14 @@ class QuestionViewModel : ViewModel() {
     fun getListQuestion() = listPoll
 
     fun incrementCount() {
-        if (curQuest.value == listPoll.size) curQuest.value = listPoll.size
+
+        if (curQuest.value == listPoll.size -1)
+            finished.value = true
+
         else curQuest.value = curQuest.value?.plus(1) ?: 1
+
+
+
     }
 
     fun getCount() =
