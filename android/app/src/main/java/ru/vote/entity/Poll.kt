@@ -1,9 +1,10 @@
 package ru.vote.entity
 
-// Опрос
-data class Poll(
+// Это биллютень
+class Poll(
     val id: Int,
-    val title: String,
-    val subtitle: String,
-    val answers: List<String>
+    var type: Int,
+    var title: String,
+    var subtitle: String = "",
+    var listAnswers: MutableList<String>
 )
