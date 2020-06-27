@@ -63,7 +63,7 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
 
             val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
 
-            for ((index, value) in list.withIndex()) {
+            list.forEachIndexed { index, value ->
 
                 val box: CompoundButton = if (type == 1) CheckBox(ctx) else RadioButton(ctx)
                 box.text = value
@@ -71,13 +71,12 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
                 listBox.add(index, box)
             }
 
-            val layout = if (type == 1) LinearLayout(ctx) else RadioGroup(ctx)
-            layout.orientation = LinearLayout.VERTICAL
+            val group = if (type == 1) LinearLayout(ctx) else RadioGroup(ctx)
+            group.orientation = LinearLayout.VERTICAL
 
-            layout.invalidate()
-            listBox.forEach { layout.addView(it) }
-            return layout
-
+            group.invalidate()
+            listBox.forEach { group.addView(it) }
+            return group
         }
 
 

@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fr_auth.*
 import ru.vote.R
 import ru.vote.extensions.isValidLogin
 import ru.vote.extensions.isValidPass
 import ru.vote.repository.LocalRepository
 import ru.vote.ui.message.MessageFragment
+import ru.vote.viewmodel.AuthViewModel
 
 class AuthFragment : Fragment() {
 
@@ -29,6 +31,8 @@ class AuthFragment : Fragment() {
     // Вызывается создание компонентов
     override fun onCreateView(inflater: LayoutInflater, group: ViewGroup?, state: Bundle?): View? {
         super.onCreateView(inflater, group, state)
+
+        val l: AuthViewModel = ViewModelProvider(requireActivity())[AuthViewModel::class.java]
         return inflater.inflate(R.layout.fr_auth, group, false)
     }
 
