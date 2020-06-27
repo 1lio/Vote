@@ -10,6 +10,7 @@ class QuestionViewModel : ViewModel() {
 
     private val listQuestion = FakeRepository().getQuestions()
     private val curQuest = MutableLiveData<Int>()
+    private val listAnswer = MutableLiveData<Map<Int,Array<String>>>()
 
     init {
         curQuest.value = 0
@@ -28,4 +29,14 @@ class QuestionViewModel : ViewModel() {
 
     fun getCount() =
         if (curQuest.value!! >= listQuestion.size) listQuestion.size else curQuest.value
+
+
+    fun setAnswer(index:Int, answers : Array<String>){
+        listAnswer.value = mapOf(index to answers)
+    }
+
+    fun isSavedAnswer(index: Int): Boolean {
+         val answers: Array<String>? = listAnswer.value?.get(index)
+         return answers?.get(0)?.isEmpty() ?: false
+    }
 }

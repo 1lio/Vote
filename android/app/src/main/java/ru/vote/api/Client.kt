@@ -13,7 +13,6 @@ class Client {
     private val api:Api
 
     init {
-
         interceptor.level = HttpLoggingInterceptor.Level.BODY
 
         retrofit = Retrofit.Builder()

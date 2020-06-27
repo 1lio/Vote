@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_template.*
 import ru.vote.MainActivity
 import ru.vote.R
 import ru.vote.entity.Question
@@ -17,6 +16,8 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
 
     private lateinit var ctx: Context
     private lateinit var viewModel: QuestionViewModel
+    private lateinit var listBoxCheckBox: MutableList<CheckBox>
+    private lateinit var listBoxRadioButton: MutableList<RadioButton>
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         ctx = parent.context
@@ -45,7 +46,7 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
             voteSubtitle.text = list[index].subtitle
             voteCounter.text = "${(index + 1)}/${list.size}"
 
-            btnNext.setOnClickListener {
+            btnNext.setOnClickListener{
 
                 viewModel.incrementCount()
             }
@@ -63,7 +64,7 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
 
         private fun viewCheckbox(): View {
 
-            val listBox = mutableListOf<CheckBox>()
+            listBoxCheckBox = mutableListOf<CheckBox>()
 
             val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
 
@@ -87,7 +88,7 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
 
         // TODO: Доделать
         private fun viewRadioButton(): View {
-            val listBox = mutableListOf<RadioButton>()
+            listBoxRadioButton = mutableListOf<RadioButton>()
 
             val list = viewModel.getListQuestion()[viewModel.getCount()!!].listAnswers
 
@@ -104,6 +105,8 @@ class QuestionPagerAdapter(private val list: ArrayList<Question>) :
             listBox.forEach { layout.addView(it) }
             return layout
         }
+
+
 
 
     }
