@@ -1,5 +1,3 @@
-package ru.vote
-
 import io.ktor.application.Application
 import io.ktor.application.install
 import io.ktor.features.CallLogging
@@ -12,6 +10,8 @@ import ru.vote.routes.addRouting
 
 import java.text.DateFormat
 
+@Suppress("unused") // Referenced in application.conf
+@kotlin.jvm.JvmOverloads
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
 fun Application.module() {
