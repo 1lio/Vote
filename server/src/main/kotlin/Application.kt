@@ -10,10 +10,9 @@ import ru.vote.routes.addRouting
 
 import java.text.DateFormat
 
-@Suppress("unused") // Referenced in application.conf
-@kotlin.jvm.JvmOverloads
 fun main(args: Array<String>): Unit = EngineMain.main(args)
 
+@Suppress("unused") // Referenced in application.conf
 fun Application.module() {
 
     install(Locations)
